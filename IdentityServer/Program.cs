@@ -12,13 +12,22 @@ builder.Services.AddIdentityServer()
     .AddInMemoryApiScopes(Config.ApiScopes)
   //  .AddTestUsers(Config.TestUsers)
     .AddDeveloperSigningCredential();
+/// <summary>
+/// add Controller And views
+/// </summary>
+builder.Services.AddControllersWithViews();
 
 
+/// <summary>
+///End add Controller And views
+/// </summary>
 var app = builder.Build();
-
-
+//using static files like wwwroot
+app.UseStaticFiles();
+app.UseRouting();
 //inject Identity Server
 app.UseIdentityServer();
-app.MapGet("/", () => "Hello World!");
+//app.MapGet("/", () => "Hello World!");
+app.MapDefaultControllerRoute();
 
 app.Run();
