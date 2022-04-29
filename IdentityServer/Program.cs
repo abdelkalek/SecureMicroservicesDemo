@@ -7,10 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 //Config IdentityServer4
 builder.Services.AddIdentityServer()
     .AddInMemoryClients(Config.Clients)
-    //.AddInMemoryIdentityResources(Config.IdentityResources)
+    .AddInMemoryIdentityResources(Config.IdentityResources)
     //.AddInMemoryApiResources(Config.ApiResources)
     .AddInMemoryApiScopes(Config.ApiScopes)
-  //  .AddTestUsers(Config.TestUsers)
+    .AddTestUsers(Config.TestUsers)
     .AddDeveloperSigningCredential();
 /// <summary>
 /// add Controller And views
@@ -27,6 +27,7 @@ app.UseStaticFiles();
 app.UseRouting();
 //inject Identity Server
 app.UseIdentityServer();
+app.UseAuthorization();
 //app.MapGet("/", () => "Hello World!");
 app.MapDefaultControllerRoute();
 
