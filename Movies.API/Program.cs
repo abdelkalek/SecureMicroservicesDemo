@@ -20,7 +20,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer("Bearer", options =>
      {
-         options.Authority = "https://localhost:5005";
+         options.Authority = "https://localhost:5005";/// IdentityServer4
          options.TokenValidationParameters = new TokenValidationParameters
          {
              ValidateAudience = false
